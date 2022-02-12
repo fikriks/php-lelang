@@ -1,44 +1,46 @@
 
 # Sistem Lelang Online :handbag:
 
-> Aplikasi ini masih dalam tahap pengembangan.
+>*Branch* **develop** merupakan *branch* untuk melihat setiap perubahan yang terjadi pada projek ini.
 
-> Projek ini merupakan *project open source*, Anda dapat download/fork/clone pada projek ini.
+## :hourglass: Timeline Projek
 
-Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman PHP Native dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5.
+Dimulai : Sabtu, 12 Februari 2022
 
-## 🤔 Latar Belakang dan Tujuan
+**Administrator**
 
-Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Lunak (RPL) dan sebagai metode pembelajaran untuk memperdalam pengembangan *software* menggunakan teknologi *frontend* dan *backend* serta berguna bagi masyarakat yang ingin membangun sebuah sistem lelang barang secara *online*.
+- [x] Login & Logout **(12 Februari 2022)**
+- [ ] Mengelola Data Barang
+    - [ ] Melihat Data Barang
+    - [ ] Menambah Data Barang
+    - [ ] Menghapus Data Barang
+    - [ ] Memperbarui Data Barang
+- [ ] Mengelola Data Admin & Petugas
+    - [ ] Melihat Data Admin dan Data Petugas
+    - [ ] Menambah Admin dan Petugas
+    - [ ] Menghapus Admin dan Petugas
+    - [ ] Memperbarui Data Admin dan Petugas
+- [ ] Membuat Laporan
+    - [ ] Laporan PDF
 
-## 💻 Tools & Software yang Digunakan
-	XAMPP
+**Petugas**
 
-## :man: Akun
-	- Hak Akses Administrator
-		Username: admin
-		Password: batagorenak
-	- Hak Akses Petugas
-		Username: petugas
-		Password: batagorenak
-	- Hak Akses Masyarakat/User
-		Username: fikri
-		Password: batagorenak
+- [x] Login & Logout **(12 Februari 2022)**
+- [ ] Mengelola Data Barang
+    - [ ] Melihat Data Barang
+    - [ ] Menambah Data Barang
+    - [ ] Menghapus Data Barang
+    - [ ] Memperbarui Data Barang
+- [ ] Mengelola Data Masyarakat
+    - [ ] Melihat Data Masyarakat
+    - [ ] Menghapus Akun Masyarakat
+    - [ ] Memperbarui Data Masyarakat
+- [ ] Membuka dan Menutup Lelang
+- [ ] Membuat Laporan
+    - [ ] Laporan PDF
 
-## 📆 Tanggal
+**Masyarakat**
 
-    Tanggal Mulai Pengembangan : Sabtu, 12 Februari 2022.
-
-## 🤝 Kontribusi
-
-_**[Pull Request](https://github.com/fikriks/php-lelang/pulls)**_ dan _**[Issue](https://github.com/fikriks/php-lelang/issues)**_ di persilahkan.
-
-Anda dapat berkontribusi untuk membangun projek ini agar lebih baik lagi karena projek ini masih banyak kekurangannya, jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi atau memberi saran berupa penambahan fitur atau pun menemukan suatu masalah atau _bug_.
-
-## 📝 Lisensi
-
-Aplikasi ini berlisensi **[MIT](https://github.com/fikriks/php-lelang/blob/main/LICENSE)**, yang berarti Anda bebas untuk menggunakan, menyebarkan/mendistribusikan, memodifikasi, dan untuk tujuan komersial.
-
----
-
-PHP Lelang is open-sourced software licensed under the MIT license.
+- [x] Login & Logout **(12 Februari 2022)**
+- [x] Registrasi **(12 Februari 2022)**
+- [ ] Penawaran
