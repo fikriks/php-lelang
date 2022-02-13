@@ -10,20 +10,18 @@ class User{
         $this->db = new Database;
     }
 
-    public function loginPetugas($username, $password)
+    public function loginPetugas($username)
     {
-        $this->db->query("SELECT * FROM $this->tablePetugas INNER JOIN tb_level ON tb_level.id_level = tb_petugas.id_level WHERE username=:username AND password=:password");
+        $this->db->query("SELECT * FROM $this->tablePetugas INNER JOIN tb_level ON tb_level.id_level = tb_petugas.id_level WHERE username=:username");
         $this->db->bind('username',$username);
-        $this->db->bind('password',$password);
 
         return $this->db->single();
     }
 
-    public function loginUser($username, $password)
+    public function loginUser($username)
     {
-        $this->db->query("SELECT * FROM $this->tableUser WHERE username=:username AND password=:password");
+        $this->db->query("SELECT * FROM $this->tableUser WHERE username=:username");
         $this->db->bind('username',$username);
-        $this->db->bind('password',$password);
 
         return $this->db->single();
     }
