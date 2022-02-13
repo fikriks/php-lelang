@@ -27,7 +27,7 @@ class Register extends Controller {
                     $resultCek = $this->model('User')->cekUser($username);
                     
                     if(!$resultCek){
-                    $this->model('User')->registerUser($namaLengkap, $username, md5($password), $noTelepon);
+                    $this->model('User')->registerUser($namaLengkap, $username, password_hash($password, PASSWORD_DEFAULT), $noTelepon);
                     
                     $data['swal_script'] = "
                     <script>
