@@ -5,7 +5,7 @@
                     <div class="card pt-4">
                         <div class="card-body">
                             <div class="text-center mb-5">
-                                <img src="<?= BASE_URL ?>assets/images/logo.png" height="48" class='mb-4'>
+                                <img src="<?= BASE_URL ?>/assets/images/logo.png" height="48" class='mb-4'>
                                 <h3>Daftar</h3>
                                 <p>Silahkan isi form dibawah untuk mendaftar.</p>
                             </div>
@@ -14,7 +14,7 @@
                                     <?= $data['message'] ?>
                                 </div>   
                             <?php } ?>
-                            <form action="<?= BASE_URL ?>register" method="POST">
+                            <form action="<?= BASE_URL ?>/register" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -46,7 +46,7 @@
                                     </div>
                                 </diV>
 
-                                <a href="<?= BASE_URL ?>login">Sudah punya akun? Login</a>
+                                <a href="<?= BASE_URL ?>/login">Sudah punya akun? Login</a>
                                 <div class="clearfix row">
                                     <button class="btn btn-primary d-block mt-3" name="submit">Submit</button>
                                 </div>

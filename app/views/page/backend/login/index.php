@@ -5,7 +5,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <img src="<?= BASE_URL ?>assets/images/logo.png" height="48" class='mb-4'>
+                                <img src="<?= BASE_URL ?>/assets/images/logo.png" height="48" class='mb-4'>
                                 <h3>Login</h3>
                                 <p>Silahkan login terlebih dahulu.</p>
                             </div>
@@ -14,7 +14,7 @@
                                     <?= $data['message'] ?>
                                 </div>   
                             <?php } ?>
-                            <form action="<?= BASE_URL; ?>login" method="POST">
+                            <form action="<?= BASE_URL ?>/login" method="POST">
                                 <div class="form-group position-relative has-icon-left">
                                     <label for="username">Username</label>
                                     <div class="position-relative">
@@ -42,11 +42,11 @@
                                         <label for="checkbox1">Remember me</label>
                                     </div>
                                     <div class="float-end">
-                                        <a href="<?= BASE_URL ?>register">Belum punya akun? Login</a>
+                                        <a href="<?= BASE_URL ?>/register">Belum punya akun? Login</a>
                                     </div>
                                 </div>
                                 <div class="clearfix row">
-                                    <button class="btn btn-primary d-block" name="submit">Submit</button>
+                                    <button class="btn btn-primary d-block" name="submit">Login</button>
                                 </div>
                             </form>
                         </div>

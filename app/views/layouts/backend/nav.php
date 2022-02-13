@@ -1,8 +1,8 @@
 <?php
- if(isset($data['user']['nama_petugas'])){
-    $nama = $data['user']['nama_petugas'];
+ if(isset($_SESSION['user']['nama_petugas'])){
+    $nama = $_SESSION['user']['nama_petugas'];
  }else{
-     $nama = $data['user']['nama_lengkap'];
+     $nama = $_SESSION['user']['nama_lengkap'];
  }
 ?>
 <nav class="navbar navbar-header navbar-expand navbar-light">

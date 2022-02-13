@@ -11,11 +11,10 @@ class Dashboard extends Controller {
 
     public function index()
     {
-        $data['user'] = $_SESSION['user'];
         $data['title'] = 'Dashboard';
         
         $this->view('layouts/backend/header', $data);
         $this->view('page/backend/dashboard/index', $data);
-        $this->view('layouts/backend/footer');
+        $this->view('layouts/backend/footer', $data);
     }
 }

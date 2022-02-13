@@ -11,25 +11,25 @@ class Login extends Controller {
             $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'] ,ENT_QUOTES)));
 
             if(!empty($username) && !empty($password)){
-                $resultPetugas = $this->model('User')->loginPetugas($username);
+                $resultPetugas = $this->model('M_user')->loginPetugas($username);
     
                 if($resultPetugas){
                     if(password_verify($password, $resultPetugas['password'])){
                         $_SESSION['user'] = $resultPetugas;
                     
-                        return header('location:../dashboard');
+                        return header('location:/dashboard');
                     } else {
                         $data['error'] = true;
                         $data['message'] = "Username atau password salah";
                     }
                 }else{
-                    $resultUser = $this->model('User')->loginUser($username);
+                    $resultUser = $this->model('M_user')->loginUser($username);
                     
                     if($resultUser){
                         if(password_verify($password, $resultUser['password'])){
                             $_SESSION['user'] = $resultUser;
                             
-                            return header('location:../dashboard');
+                            return header('location:/dashboard');
                         } else {
                             $data['error'] = true;
                             $data['message'] = "Username atau password salah";

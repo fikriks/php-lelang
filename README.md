@@ -10,11 +10,11 @@ Dimulai : Sabtu, 12 Februari 2022
 **Administrator**
 
 - [x] Login & Logout **(12 Februari 2022)**
-- [ ] Mengelola Data Barang
-    - [ ] Melihat Data Barang
-    - [ ] Menambah Data Barang
-    - [ ] Menghapus Data Barang
-    - [ ] Memperbarui Data Barang
+- [x] Mengelola Data Barang **(13 Februari 2022)**
+    - [x] Melihat Data Barang **(13 Februari 2022)**
+    - [x] Menambah Data Barang **(13 Februari 2022)**
+    - [x] Menghapus Data Barang **(13 Februari 2022)**
+    - [x] Memperbarui Data Barang **(13 Februari 2022)**
 - [ ] Mengelola Data Admin & Petugas
     - [ ] Melihat Data Admin dan Data Petugas
     - [ ] Menambah Admin dan Petugas
@@ -26,11 +26,11 @@ Dimulai : Sabtu, 12 Februari 2022
 **Petugas**
 
 - [x] Login & Logout **(12 Februari 2022)**
-- [ ] Mengelola Data Barang
-    - [ ] Melihat Data Barang
-    - [ ] Menambah Data Barang
-    - [ ] Menghapus Data Barang
-    - [ ] Memperbarui Data Barang
+- [x] Mengelola Data Barang **(13 Februari 2022)**
+    - [x] Melihat Data Barang **(13 Februari 2022)**
+    - [x] Menambah Data Barang **(13 Februari 2022)**
+    - [x] Menghapus Data Barang **(13 Februari 2022)**
+    - [x] Memperbarui Data Barang **(13 Februari 2022)**
 - [ ] Mengelola Data Masyarakat
     - [ ] Melihat Data Masyarakat
     - [ ] Menghapus Akun Masyarakat

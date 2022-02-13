@@ -24,22 +24,19 @@ class Register extends Controller {
                     $data['error'] = true;
                     $data['message'] = "Password minimal 7 karakter!";
                 }else{
-                    $resultCek = $this->model('User')->cekUser($username);
+                    $resultCek = $this->model('M_user')->cekUser($username);
                     
                     if(!$resultCek){
-                    $this->model('User')->registerUser($namaLengkap, $username, password_hash($password, PASSWORD_DEFAULT), $noTelepon);
+                    $this->model('M_user')->registerUser($namaLengkap, $username, password_hash($password, PASSWORD_DEFAULT), $noTelepon);
                     
-                    $data['swal_script'] = "
-                    <script>
-                        Swal.fire({
-                            title: 'Berhasil',
-                            text: 'Berhasil mendaftar, silahkan login',
-                            icon: 'success'
-                            }).then((result) => {
-                                window.location.href='/login';
-                            });
-                    </script>";
-                    
+                    $alert = [
+                        'title' => 'Berhasil',
+                        'text' => 'Berhasil mendaftar, silahkan login',
+                        'icon' => 'success',
+                        'href' => '/login'
+                    ];
+            
+                    $_SESSION['alert'] = $alert;
                 }else{
                     $data['error'] = true;
                     $data['message'] = "Username sudah terdaftar";
