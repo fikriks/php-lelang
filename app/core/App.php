@@ -19,6 +19,8 @@ class App{
                 http_response_code(404);
                 require_once '../app/views/page/errors/404.php';
             }
+        }else{
+            header("location:/login");
         }
         
         require_once '../app/controllers/' . $this->controller . '.php';

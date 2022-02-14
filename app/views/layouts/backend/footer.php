@@ -27,9 +27,12 @@
             title: "<?= $_SESSION['alert']['title'] ?>",
             text: "<?= $_SESSION['alert']['text'] ?>",
             icon: "<?= $_SESSION['alert']['icon'] ?>"
-            }).then((result) => {
+            })
+            <?php if(!empty($data['alert']['href'])) { ?>
+            .then((result) => {
                 window.location.href="<?= $_SESSION['alert']['href'] ?>";
             });
+            <?php } ?>
         </script>
 
     <?php unset($_SESSION['alert']); } ?>

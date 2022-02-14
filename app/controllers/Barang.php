@@ -57,6 +57,10 @@ class Barang extends Controller {
         $data['title'] = 'Edit Data Barang';
         $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
 
+        if(!$data['dataBarang']){
+            header("location:/barang");
+        }
+
         $this->view('layouts/backend/header', $data);
         $this->view('page/backend/barang/edit', $data);
         $this->view('layouts/backend/footer');

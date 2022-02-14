@@ -27,21 +27,21 @@ class Register extends Controller {
                     $resultCek = $this->model('M_user')->cekUser($username);
                     
                     if(!$resultCek){
-                    $this->model('M_user')->registerUser($namaLengkap, $username, password_hash($password, PASSWORD_DEFAULT), $noTelepon);
-                    
-                    $alert = [
-                        'title' => 'Berhasil',
-                        'text' => 'Berhasil mendaftar, silahkan login',
-                        'icon' => 'success',
-                        'href' => '/login'
-                    ];
-            
-                    $_SESSION['alert'] = $alert;
-                }else{
-                    $data['error'] = true;
-                    $data['message'] = "Username sudah terdaftar";
+                        $this->model('M_user')->registerUser($namaLengkap, $username, password_hash($password, PASSWORD_DEFAULT), $noTelepon);
+                        
+                        $alert = [
+                            'title' => 'Berhasil',
+                            'text' => 'Berhasil mendaftar, silahkan login',
+                            'icon' => 'success',
+                            'href' => '/login'
+                        ];
+                
+                        $_SESSION['alert'] = $alert;
+                    }else{
+                        $data['error'] = true;
+                        $data['message'] = "Username sudah terdaftar";
+                    }
                 }
-            }
             }else{
                 $data['error'] = true;
                 $data['message'] = "Ada data yang belum di isi!";

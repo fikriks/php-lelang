@@ -13,38 +13,46 @@
             <h4 class="card-title"><?= $data['title']?></h4>
         </div>
         <div class="card-body">
-            <form method="POST" action="<?= BASE_URL ?>/barang/store">
+            <form method="POST" action="<?= BASE_URL ?>/petugas/store">
                 <div class="form-group row mb-4">
-                    <label for="tgl" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tanggal <span
+                    <label for="nama-petugas" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Petugas <span
                             class="text-danger fw-bold">*</span></label>
                     <div class="col-sm-12 col-md-7">
-                        <input type="date" id="tgl" name="tgl" class="form-control" required>
+                        <input type="text" id="nama-petugas" name="nama_petugas" class="form-control" placeholder="Nama Petugas" autocomplete="off" required>
                     </div>
                 </div>    
                 <div class="form-group row mb-4">
-                    <label for="nama-barang" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Barang <span
+                    <label for="username" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Username <span
                             class="text-danger fw-bold">*</span></label>
                     <div class="col-sm-12 col-md-7">
-                        <input type="text" id="nama-barang" name="nama_barang" class="form-control"
-                            placeholder="Nama Barang" autocomplete="off"
+                        <input type="text" id="username" name="username" class="form-control"
+                            placeholder="Username" autocomplete="off"
                             required>
                     </div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label for="harga-awal" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga Awal <span
+                    <label for="password" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password <span
                             class="text-danger fw-bold">*</span></label>
                     <div class="col-sm-12 col-md-7">
-                        <input type="number" id="harga-awal" name="harga_awal" class="form-control"
-                            placeholder="Harga Awal" autocomplete="off"
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Password" autocomplete="off"
                             required>
                     </div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label for="deskripsi-barang" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi Barang <span
+                    <label for="hak-akses" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Hak Akses <span
                             class="text-danger fw-bold">*</span></label>
                     <div class="col-sm-12 col-md-7">
-                        <textarea rows="10" name="deskripsi_barang" class="form-control"
-                            placeholder="Deskripsi Barang" autocomplete="off" required></textarea>
+                        <select id="hak-akses" name="hak_akses" class="form-control" required>
+                            <?php
+                                $i = 0;
+                                $hakAkses = ['-- Pilih --', 'Administrator', 'Petugas'];
+
+                                foreach($hakAkses as $ha){
+                                ?>
+                                <option <?= $i == 0 ? 'disabled selected' : '' ?> value="<?= $i ?>"><?= $ha ?></option>
+                            <?php $i++; } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-grup row mb-4">

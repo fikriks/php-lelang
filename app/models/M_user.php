@@ -1,6 +1,6 @@
 <?php
 
-class M_user{
+class M_user {
     private $tablePetugas = "tb_petugas";
     private $tableUser = "tb_masyarakat";
     private $db;

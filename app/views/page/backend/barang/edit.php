@@ -34,7 +34,7 @@
                     <label for="harga-awal" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga Awal <span
                             class="text-danger fw-bold">*</span></label>
                     <div class="col-sm-12 col-md-7">
-                        <input type="number" name="harga_awal" class="form-control"
+                        <input type="number" id="harga-awal" name="harga_awal" class="form-control"
                             placeholder="Harga Awal" value="<?= $data['dataBarang']['harga_awal'] ?>" autocomplete="off"
                             required>
                     </div>
