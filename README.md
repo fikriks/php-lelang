@@ -15,11 +15,11 @@ Dimulai : Sabtu, 12 Februari 2022
     - [x] Menambah Data Barang **(13 Februari 2022)**
     - [x] Menghapus Data Barang **(13 Februari 2022)**
     - [x] Memperbarui Data Barang **(13 Februari 2022)**
-- [ ] Mengelola Data Admin & Petugas
-    - [ ] Melihat Data Admin dan Data Petugas
-    - [ ] Menambah Admin dan Petugas
-    - [ ] Menghapus Admin dan Petugas
-    - [ ] Memperbarui Data Admin dan Petugas
+- [x] Mengelola Data Admin & Petugas **(14 Februari 2022)**
+    - [x] Melihat Data Admin dan Data Petugas **(14 Februari 2022)**
+    - [x] Menambah Admin dan Petugas **(14 Februari 2022)**
+    - [x] Menghapus Admin dan Petugas **(14 Februari 2022)**
+    - [x] Memperbarui Data Admin dan Petugas **(14 Februari 2022)**
 - [ ] Membuat Laporan
     - [ ] Laporan PDF
 
