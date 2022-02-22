@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th>Tanggal</th>
+                        <th>Gambar</th>
                         <th>Nama Barang</th>
                         <th>Harga Awal</th>
                         <th>Deskripsi</th>
@@ -31,6 +32,7 @@
                     foreach($data['dataBarang'] as $db) : ?>
                       <tr>
                         <td><?= date('d F Y', strtotime($db['tgl'])) ?></td>
+                        <td><img src="assets/images/barang/<?= $db['gambar'] ?>" width="50"></td>
                         <td><?= $db['nama_barang'] ?></td>
                         <td><?= $db['harga_awal'] ?></td>
                         <td><?= $db['deskripsi_barang'] ?></td>

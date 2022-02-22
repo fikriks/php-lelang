@@ -5,14 +5,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <img src="<?= BASE_URL ?>/assets/images/logo.png" height="48" class='mb-4'>
+                                <img src="<?= BASE_URL ?>/assets/images/logo.svg" height="48" class='mb-4'>
                                 <h3>Login</h3>
                                 <p>Silahkan login terlebih dahulu.</p>
                             </div>
-                            <?php if(isset($data['error'])){ ?>
-                                 <div class="alert alert-danger">
+                            <?php if (isset($data['error'])) { ?>
+                                <div class="alert alert-danger">
                                     <?= $data['message'] ?>
-                                </div>   
+                                </div>
                             <?php } ?>
                             <form action="<?= BASE_URL ?>/login" method="POST">
                                 <div class="form-group position-relative has-icon-left">
@@ -37,15 +37,11 @@
                                 </div>
 
                                 <div class='form-check clearfix my-4'>
-                                    <div class="checkbox float-start">
-                                        <input type="checkbox" id="checkbox1" class='form-check-input'>
-                                        <label for="checkbox1">Remember me</label>
-                                    </div>
-                                    <div class="float-end">
-                                        <a href="<?= BASE_URL ?>/register">Belum punya akun? Login</a>
+                                    <div class="text-center">
+                                        <a href="<?= BASE_URL ?>/register">Belum punya akun? Daftar</a>
                                     </div>
                                 </div>
-                                <div class="clearfix row">
+                                <div class="row">
                                     <button class="btn btn-primary d-block" name="submit">Login</button>
                                 </div>
                             </form>
@@ -55,4 +51,3 @@
             </div>
         </div>
     </div>
-  

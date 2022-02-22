@@ -24,14 +24,6 @@ class M_petugas {
         return $this->db->single();
     }
 
-    public function cekPetugaById($id)
-    {
-        $this->db->query("SELECT * FROM $this->table WHERE id_petugas=:id");
-        $this->db->bind("id",$id);
-        
-        return $this->db->single();
-    }
-
     public function addPetugas($namaPetugas, $username, $password, $idLevel)
     {
         $this->db->query("INSERT INTO $this->table(nama_petugas, username, password, id_level) VALUE (:nama_petugas, :username, :password, :id_level)");

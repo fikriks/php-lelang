@@ -2,7 +2,7 @@
 
 class App{
     
-    protected $controller = 'Login';
+    protected $controller = 'Home';
     protected $method = 'index';
     protected $params = [];
 
@@ -20,7 +20,7 @@ class App{
                 require_once '../app/views/page/errors/404.php';
             }
         }else{
-            header("location:/login");
+            // header("location:/login");
         }
         
         require_once '../app/controllers/' . $this->controller . '.php';

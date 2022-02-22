@@ -13,7 +13,16 @@
             <h4 class="card-title"><?= $data['title']?></h4>
         </div>
         <div class="card-body">
-            <form method="POST" action="<?= BASE_URL ?>/barang/store">
+            <form method="POST" action="<?= BASE_URL ?>/barang/store" enctype="multipart/form-data">
+                <div class="form-group row mb-4">
+                    <label for="gambar-barang" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto Barang <span
+                            class="text-danger fw-bold">*</span></label>
+                    <div class="col-sm-12 col-md-7">
+                        <input type="file" id="gambar-barang" name="gambar_barang" class="form-control"
+                            placeholder="Gambar Barang" autocomplete="off"
+                            required accept="image/*" onchange="validateImage()">
+                    </div>
+                </div>
                 <div class="form-group row mb-4">
                     <label for="tgl" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tanggal <span
                             class="text-danger fw-bold">*</span></label>

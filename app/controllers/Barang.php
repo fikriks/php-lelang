@@ -1,11 +1,14 @@
 <?php
 
-class Barang extends Controller {
+class Barang extends Controller
+{
 
     public function __construct()
     {
-        if(empty($_SESSION['user'])){
+        if (empty($_SESSION['user'])) {
             header('location:../login');
+        } else if (empty($_SESSION['user']['level'])) {
+            header('location:../dashboard');
         }
     }
 
@@ -14,10 +17,10 @@ class Barang extends Controller {
         $data['title'] = 'Data Barang';
         $data['dataBarang'] = $this->model('M_barang')->getDataBarang();
         $data['dataTable'] = true;
-        
+
         $this->view('layouts/backend/header', $data);
         $this->view('page/backend/barang/index', $data);
-        $this->view('layouts/backend/footer');
+        $this->view('layouts/backend/footer', $data);
     }
 
     public function create()
@@ -31,24 +34,43 @@ class Barang extends Controller {
 
     public function store()
     {
-        if(isset($_POST['submit'])){
-            $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'] ,ENT_QUOTES)));
-            $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'] ,ENT_QUOTES)));
-            $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'] ,ENT_QUOTES)));
-            $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'] ,ENT_QUOTES)));
-            
-            $this->model('M_barang')->addBarang($namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
-            
-            $alert = [
-                'title' => 'Berhasil',
-                'text' => 'Berhasil menambah data barang',
-                'icon' => 'success',
-                'href' => '/barang'
-            ];
+        if (isset($_POST['submit'])) {
+            $tmp = $_FILES['gambar_barang']['tmp_name'];
+            $upload = 'assets/images/barang/';
+            $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
-            $_SESSION['alert'] = $alert;
+            $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'], ENT_QUOTES)));
+            $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'], ENT_QUOTES)));
+            $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'], ENT_QUOTES)));
+            $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'], ENT_QUOTES)));
+            $namaGambar = time() . '-' . $this->textToSlug($namaBarang) . '.' . $ext;
 
-            header("location:/barang");
+            $this->model('M_barang')->addBarang($namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+
+            $proses = move_uploaded_file($tmp, $upload . $namaGambar);
+
+            if ($proses) {
+                $alert = [
+                    'title' => 'Berhasil',
+                    'text' => 'Berhasil menambah data barang',
+                    'icon' => 'success',
+                    'href' => '/barang'
+                ];
+
+                $_SESSION['alert'] = $alert;
+
+                header("location:/barang");
+            } else {
+                $alert = [
+                    'title' => 'Gagal',
+                    'text' => 'Gagal menambah data barang',
+                    'icon' => 'error'
+                ];
+
+                $_SESSION['alert'] = $alert;
+
+                echo '<script>history.back()</script>';
+            }
         }
     }
 
@@ -57,7 +79,7 @@ class Barang extends Controller {
         $data['title'] = 'Edit Data Barang';
         $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
 
-        if(!$data['dataBarang']){
+        if (!$data['dataBarang']) {
             header("location:/barang");
         }
 
@@ -68,36 +90,75 @@ class Barang extends Controller {
 
     public function update($id)
     {
-        if(isset($_POST['submit'])){
-            $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'] ,ENT_QUOTES)));
-            $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'] ,ENT_QUOTES)));
-            $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'] ,ENT_QUOTES)));
-            $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'] ,ENT_QUOTES)));
+        if (isset($_POST['submit'])) {
+            $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'], ENT_QUOTES)));
+            $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'], ENT_QUOTES)));
+            $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'], ENT_QUOTES)));
+            $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'], ENT_QUOTES)));
 
-            $this->model('M_barang')->updateBarang($id, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
-            
-            $alert = [
-                'title' => 'Berhasil',
-                'text' => 'Berhasil memperbarui data barang',
-                'icon' => 'success',
-                'href' => '/barang'
-            ];
+            if (isset($_FILES['gambar_barang'])) {
+                $tmp = $_FILES['gambar_barang']['tmp_name'];
+                $upload = 'assets/images/barang/';
+                $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
-            $_SESSION['alert'] = $alert;
+                $namaGambar = time() . '-' . $this->textToSlug($namaBarang) . '.' . $ext;
 
-            header("location:/barang");
+                $ambilGambar = $this->model('M_barang')->getDataBarangById($id);
+
+                unlink('assets/images/barang/' . $ambilGambar['gambar']);
+
+                $this->model('M_barang')->updateBarang($id, $namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+
+                $proses = move_uploaded_file($tmp, $upload . $namaGambar);
+
+                if ($proses) {
+                    $alert = [
+                        'title' => 'Berhasil',
+                        'text' => 'Berhasil memperbarui data barang',
+                        'icon' => 'success',
+                        'href' => '/barang'
+                    ];
+
+                    $_SESSION['alert'] = $alert;
+
+                    header("location:/barang");
+                } else {
+                    $alert = [
+                        'title' => 'Gagal',
+                        'text' => 'Gagal memperbarui data barang',
+                        'icon' => 'error'
+                    ];
+
+                    $_SESSION['alert'] = $alert;
+
+                    echo '<script>history.back()</script>';
+                }
+            } else {
+                $this->model('M_barang')->updateBarang($id, null, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+
+                $alert = [
+                    'title' => 'Berhasil',
+                    'text' => 'Berhasil memperbarui data barang',
+                    'icon' => 'success',
+                    'href' => '/barang'
+                ];
+
+                $_SESSION['alert'] = $alert;
+
+                header("location:/barang");
+            }
         }
     }
 
     public function delete()
     {
-        $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'] ,ENT_QUOTES)));
+        $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
 
         $this->model('M_barang')->deleteBarang($id);
 
         $alert = [
             'title' => 'Berhasil',
-            'text' => 'Berhasil memperbarui data barang',
+            'text' => 'Berhasil menghapus data barang',
             'icon' => 'success',
             'href' => '/barang'
         ];
@@ -105,5 +166,16 @@ class Barang extends Controller {
         $_SESSION['alert'] = $alert;
 
         header("location:/barang");
+    }
+
+    function textToSlug($text = '')
+    {
+        $text = trim($text);
+        if (empty($text)) return '';
+        $text = preg_replace("/[^a-zA-Z0-9\-\s]+/", "", $text);
+        $text = strtolower(trim($text));
+        $text = str_replace(' ', '-', $text);
+        $text = $text_ori = preg_replace('/\-{2,}/', '-', $text);
+        return $text;
     }
 }

@@ -1,34 +1,42 @@
 <?php
 
-class Login extends Controller {
+class Login extends Controller
+{
+
+    public function __construct()
+    {
+        if (!empty($_SESSION['user'])) {
+            header('location:../dashboard');
+        }
+    }
 
     public function index()
     {
         $data['title'] = 'Login';
 
-        if(isset($_POST['submit'])){
-            $username = stripslashes(strip_tags(htmlspecialchars($_POST['username'] ,ENT_QUOTES)));
-            $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'] ,ENT_QUOTES)));
+        if (isset($_POST['submit'])) {
+            $username = stripslashes(strip_tags(htmlspecialchars($_POST['username'], ENT_QUOTES)));
+            $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
 
-            if(!empty($username) && !empty($password)){
+            if (!empty($username) && !empty($password)) {
                 $resultPetugas = $this->model('M_user')->loginPetugas($username);
-    
-                if($resultPetugas){
-                    if(password_verify($password, $resultPetugas['password'])){
+
+                if ($resultPetugas) {
+                    if (password_verify($password, $resultPetugas['password'])) {
                         $_SESSION['user'] = $resultPetugas;
-                    
+
                         return header('location:/dashboard');
                     } else {
                         $data['error'] = true;
                         $data['message'] = "Username atau password salah";
                     }
-                }else{
+                } else {
                     $resultUser = $this->model('M_user')->loginUser($username);
-                    
-                    if($resultUser){
-                        if(password_verify($password, $resultUser['password'])){
+
+                    if ($resultUser) {
+                        if (password_verify($password, $resultUser['password'])) {
                             $_SESSION['user'] = $resultUser;
-                            
+
                             return header('location:/dashboard');
                         } else {
                             $data['error'] = true;
@@ -39,7 +47,7 @@ class Login extends Controller {
                         $data['message'] = "Username atau password salah";
                     }
                 }
-            }else{
+            } else {
                 $data['error'] = true;
                 $data['message'] = "Ada data yang belum di isi!";
             }
