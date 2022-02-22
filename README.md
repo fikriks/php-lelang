@@ -15,13 +15,14 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 
 ## 🔧 Konfigurasi
 
-Buka file app/config/config.php
-Ubah pada bagian
+- Import file lelang.sql ke database
+- Buka file app/config/config.php
+- Ubah pada bagian
 
-    define('BASE_URL', 'http://localhost');
-    define('DB_NAME', 'lelang');
+      define('BASE_URL', 'http://localhost');
+      define('DB_NAME', 'lelang');
 
-Sesuaikan dengan yang kalian punya
+- Sesuaikan dengan yang kalian punya
 
 ## :man: Akun
 
