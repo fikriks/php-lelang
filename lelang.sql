@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 13, 2022 at 09:18 AM
+-- Generation Time: Feb 22, 2022 at 06:28 PM
 -- Server version: 5.7.24
--- PHP Version: 8.0.13
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_barang` (
   `id_barang` int(11) NOT NULL,
+  `gambar` varchar(100) NOT NULL,
   `nama_barang` varchar(25) NOT NULL,
   `tgl` date NOT NULL,
   `harga_awal` int(20) NOT NULL,
@@ -124,7 +125,7 @@ CREATE TABLE `tb_petugas` (
 --
 
 INSERT INTO `tb_petugas` (`id_petugas`, `nama_petugas`, `username`, `password`, `id_level`) VALUES
-(1, 'Fikri Khairul Shaleh', 'admin', '$2y$10$O7oV4C3dDL.4BjXhFydBYeTvyeIHMKrbnH3sr8QF7trVgRLAHWsPO', 1),
+(1, 'Fikri Khairul Shaleh', 'admin', '$2y$10$cBMY1xGz8S38OtFGv0sHTuHCqveQGQmc4M5fvuQfTO4tdkWJRyZ2a', 1),
 (2, 'Fikri Khairul Shaleh', 'petugas', '$2y$10$O7oV4C3dDL.4BjXhFydBYeTvyeIHMKrbnH3sr8QF7trVgRLAHWsPO', 2);
 
 --
@@ -184,19 +185,19 @@ ALTER TABLE `tb_petugas`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_history_lelang`
 --
 ALTER TABLE `tb_history_lelang`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tb_lelang`
 --
 ALTER TABLE `tb_lelang`
-  MODIFY `id_lelang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_lelang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_level`
@@ -208,13 +209,13 @@ ALTER TABLE `tb_level`
 -- AUTO_INCREMENT for table `tb_masyarakat`
 --
 ALTER TABLE `tb_masyarakat`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_petugas`
 --
 ALTER TABLE `tb_petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
