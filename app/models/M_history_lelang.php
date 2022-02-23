@@ -10,7 +10,7 @@ class M_history_lelang
         $this->db = new Database;
     }
 
-    public function addHistoryLelang($idLelang, $idBarang, $idUser, $penawaranHarga)
+    public function addHistoryLelang(int $idLelang, int $idBarang, int $idUser, int $penawaranHarga)
     {
         $this->db->query("INSERT INTO $this->table(id_lelang, id_barang, id_user ,penawaran_harga) VALUE (:id_lelang,:id_barang,:id_user,:penawaran_harga)");
         $this->db->bind('id_lelang', $idLelang);
@@ -21,7 +21,7 @@ class M_history_lelang
         return $this->db->execute();
     }
 
-    public function getHistoryLelangByLelangId($id)
+    public function getHistoryLelangByLelangId(int $id)
     {
         $this->db->query("SELECT * FROM $this->table INNER JOIN tb_masyarakat ON tb_history_lelang.id_user = tb_masyarakat.id_user WHERE id_lelang=:id ORDER BY penawaran_harga DESC LIMIT 10");
         $this->db->bind('id', $id);
@@ -29,7 +29,7 @@ class M_history_lelang
         return $this->db->resultSet();
     }
 
-    public function getHistoryLelangByUserId($id)
+    public function getHistoryLelangByUserId(int $id)
     {
         $this->db->query("SELECT * FROM $this->table INNER JOIN tb_barang ON tb_history_lelang.id_barang = tb_barang.id_barang INNER JOIN tb_lelang ON tb_history_lelang.id_lelang = tb_lelang.id_lelang INNER JOIN tb_masyarakat ON tb_history_lelang.id_user = tb_masyarakat.id_user WHERE tb_masyarakat.id_user=:id");
         $this->db->bind('id', $id);
@@ -37,7 +37,7 @@ class M_history_lelang
         return $this->db->resultSet();
     }
 
-    public function getHargaTertinggi($id)
+    public function getHargaTertinggi(int $id)
     {
         $this->db->query("SELECT * FROM $this->table WHERE id_lelang=:id ORDER BY penawaran_harga DESC LIMIT 1");
         $this->db->bind('id', $id);

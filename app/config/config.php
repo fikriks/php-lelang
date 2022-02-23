@@ -1,9 +1,9 @@
 <?php
 
-define('APP_NAME', 'Sistem Lelang Online (SiLang)');
-define('BASE_URL', 'http://localhost');
-define('AUTHOR', 'Fikri Khairul Shaleh');
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'lelang');
+const APP_NAME = 'Sistem Lelang Online (SiLang) | UKK RPL';
+const BASE_URL = 'http://localhost/';
+const AUTHOR = 'Fikri Khairul Shaleh';
+const DB_HOST = 'localhost';
+const DB_USER = 'root';
+const DB_PASS = '';
+const DB_NAME = 'lelang';

@@ -1,6 +1,7 @@
 <?php
 
-class M_barang {
+class M_barang
+{
     private $table = "tb_barang";
     private $db;
 
@@ -12,7 +13,7 @@ class M_barang {
     public function getDataBarang()
     {
         $this->db->query("SELECT * FROM $this->table");
-        
+
         return $this->db->resultSet();
     }
 
@@ -23,7 +24,7 @@ class M_barang {
         return $this->db->resultSet();
     }
 
-    public function addBarang($namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang)
+    public function addBarang(string $namaGambar, string $namaBarang, String $tgl, int $hargaAwal, string $deskripsiBarang)
     {
         $this->db->query("INSERT INTO $this->table(gambar, nama_barang, tgl, harga_awal, deskripsi_barang) VALUE (:gambar, :nama_barang, :tgl, :harga_awal, :deskripsi_barang)");
         $this->db->bind('gambar', $namaGambar);
@@ -35,7 +36,7 @@ class M_barang {
         return $this->db->execute();
     }
 
-    public function getDataBarangById($id)
+    public function getDataBarangById(int $id)
     {
         $this->db->query("SELECT * FROM $this->table WHERE id_barang=:id");
         $this->db->bind('id', $id);
@@ -43,16 +44,16 @@ class M_barang {
         return $this->db->single();
     }
 
-    public function updateBarang($id, $namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang)
+    public function updateBarang(int $id, ?string $namaGambar, string $namaBarang, String $tgl, int $hargaAwal, string $deskripsiBarang)
     {
-        if(empty($namaGambar)){
+        if (is_null($namaGambar)) {
             $this->db->query("UPDATE $this->table SET nama_barang=:nama_barang, tgl=:tgl, harga_awal=:harga_awal, deskripsi_barang=:deskripsi_barang WHERE id_barang=:id");
             $this->db->bind('id', $id);
             $this->db->bind('nama_barang', $namaBarang);
             $this->db->bind('tgl', $tgl);
             $this->db->bind('harga_awal', $hargaAwal);
             $this->db->bind('deskripsi_barang', $deskripsiBarang);
-        }else{
+        } else {
             $this->db->query("UPDATE $this->table SET gambar=:gambar, nama_barang=:nama_barang, tgl=:tgl, harga_awal=:harga_awal, deskripsi_barang=:deskripsi_barang WHERE id_barang=:id");
             $this->db->bind('id', $id);
             $this->db->bind('gambar', $namaGambar);
@@ -61,11 +62,11 @@ class M_barang {
             $this->db->bind('harga_awal', $hargaAwal);
             $this->db->bind('deskripsi_barang', $deskripsiBarang);
         }
-      
+
         return $this->db->execute();
     }
 
-    public function deleteBarang($id)
+    public function deleteBarang(int $id)
     {
         $this->db->query("DELETE FROM $this->table WHERE id_barang=:id");
         $this->db->bind('id', $id);

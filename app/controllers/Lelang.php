@@ -40,40 +40,44 @@ class Lelang extends Controller
             $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tanggal'], ENT_QUOTES)));
             $status = stripslashes(strip_tags(htmlspecialchars($_POST['status_lelang'], ENT_QUOTES)));
 
-            $this->model('M_lelang')->addLelang($idBarang, $tgl, $_SESSION['user']['id_petugas'], $status);
+            $this->model('M_lelang')->addLelang(idBarang: $idBarang, tgl: $tgl, idPetugas: $_SESSION['user']['id_petugas'], status: $status);
 
             $alert = [
                 'title' => 'Berhasil',
                 'text' => 'Berhasil menambah data lelang',
                 'icon' => 'success',
-                'href' => '/lelang'
+                'href' => '../lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:/lelang");
+            header("location:../lelang");
         }
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $data['title'] = 'Detail Data Lelang';
-        $data['dataHistoryLelang'] = $this->model('M_lelang')->getDataHistoryLelang($id);
+        $data['dataHistoryLelang'] = $this->model('M_lelang')->getDataHistoryLelang(id: $id);
         $data['dataTable'] = true;
+
+        if (!$data['dataHistoryLelang']) {
+            header("location:../lelang");
+        }
 
         $this->view('layouts/backend/header', $data);
         $this->view('page/backend/lelang/show', $data);
         $this->view('layouts/backend/footer', $data);
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $data['title'] = 'Edit Data Lelang';
-        $data['dataLelang'] = $this->model('M_lelang')->getDataLelangById($id);
+        $data['dataLelang'] = $this->model('M_lelang')->getDataLelangById(id: $id);
         $data['dataBarang'] = $this->model('M_barang')->getDataBarang();
 
         if (!$data['dataLelang']) {
-            header("location:/lelang");
+            header("location:../lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -81,31 +85,31 @@ class Lelang extends Controller
         $this->view('layouts/backend/footer');
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         if (isset($_POST['submit'])) {
             $idBarang = stripslashes(strip_tags(htmlspecialchars($_POST['barang'], ENT_QUOTES)));
             $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tanggal'], ENT_QUOTES)));
             $status = stripslashes(strip_tags(htmlspecialchars($_POST['status_lelang'], ENT_QUOTES)));
 
-            $this->model('M_lelang')->updateLelang($id, $idBarang, $tgl, $status);
+            $this->model('M_lelang')->updateLelang(id: $id, idBarang: $idBarang, tgl: $tgl, status: $status);
 
             if ($status == 'ditutup') {
-                $data = $this->model('M_history_lelang')->getHargaTertinggi($id);
+                $data = $this->model('M_history_lelang')->getHargaTertinggi(id: $id);
 
-                $this->model('M_penawaran')->addPenawaran($id, $data['id_user'], $data['penawaran_harga']);
+                $this->model('M_penawaran')->addPenawaran(id: $id, idUser: $data['id_user'], penawaranHarga: $data['penawaran_harga']);
             }
 
             $alert = [
                 'title' => 'Berhasil',
                 'text' => 'Berhasil memperbarui data lelang',
                 'icon' => 'success',
-                'href' => '/lelang'
+                'href' => '../lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:/lelang");
+            header("location:../lelang");
         }
     }
 
@@ -113,17 +117,17 @@ class Lelang extends Controller
     {
         $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
 
-        $this->model('M_lelang')->deleteLelang($id);
+        $this->model('M_lelang')->deleteLelang(id: $id);
 
         $alert = [
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data lelang',
             'icon' => 'success',
-            'href' => '/lelang'
+            'href' => '../lelang'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:/lelang");
+        header("location:../lelang");
     }
 }
