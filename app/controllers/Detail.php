@@ -10,9 +10,9 @@ class Detail extends Controller
         }
 
         $data['title'] = 'Dashboard';
-        $data['dataLelang'] = $this->model('M_lelang')->getDataLelangById($id);
-        $data['historyLelang'] = $this->model('M_history_lelang')->getHistoryLelangByLelangId($id);
-        $data['hargaTertinggi'] = $this->model('M_history_lelang')->getHargaTertinggi($id);
+        $data['dataLelang'] = $this->model('M_lelang')->getDataLelangById(id: $id);
+        $data['historyLelang'] = $this->model('M_history_lelang')->getHistoryLelangByLelangId(id: $id);
+        $data['hargaTertinggi'] = $this->model('M_history_lelang')->getHargaTertinggi(id: $id);
 
         if (!$data['dataLelang']) {
             header("location:/");
