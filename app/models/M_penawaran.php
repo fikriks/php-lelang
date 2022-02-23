@@ -9,7 +9,7 @@ class M_penawaran
         $this->db = new Database;
     }
 
-    public function addPenawaran($idLelang, $idUser, $hargaAkhir)
+    public function addPenawaran(int $idLelang, int $idUser, int $hargaAkhir)
     {
         $this->db->query("UPDATE tb_lelang set harga_akhir=:harga, id_user=:id_user WHERE id_lelang=:id_lelang");
         $this->db->bind('id_lelang', $idLelang);

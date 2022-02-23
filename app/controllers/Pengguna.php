@@ -23,10 +23,10 @@ class Pengguna extends Controller
         $this->view('layouts/backend/footer', $data);
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $data['title'] = 'Edit Data Pengguna';
-        $data['dataPengguna'] = $this->model('M_user')->getDataPenggunaById($id);
+        $data['dataPengguna'] = $this->model('M_user')->getDataPenggunaById(id: $id);
 
         if (!$data['dataPengguna']) {
             header("location:/pengguna");
@@ -37,21 +37,21 @@ class Pengguna extends Controller
         $this->view('layouts/backend/footer');
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         if (isset($_POST['submit'])) {
             $namaPengguna = stripslashes(strip_tags(htmlspecialchars($_POST['nama_pengguna'], ENT_QUOTES)));
             $username = stripslashes(strip_tags(htmlspecialchars($_POST['username'], ENT_QUOTES)));
             $telp = stripslashes(strip_tags(htmlspecialchars($_POST['telp'], ENT_QUOTES)));
 
-            $resultCek = $this->model('M_user')->getDataPenggunaById($id);
+            $resultCek = $this->model('M_user')->getDataPenggunaById(id: $id);
 
             if ($username == $resultCek['username']) {
                 if (!empty($_POST['password'])) {
                     $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
                     $password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $this->model('M_user')->updatePengguna($id, $namaPengguna, $username, $password, $telp);
+                    $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: $password, telp: $telp);
 
                     $alert = [
                         'title' => 'Berhasil',
@@ -64,7 +64,7 @@ class Pengguna extends Controller
 
                     header("location:/pengguna");
                 } else {
-                    $this->model('M_user')->updatePengguna($id, $namaPengguna, $username, null,  $telp);
+                    $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
                     $alert = [
                         'title' => 'Berhasil',
@@ -78,7 +78,7 @@ class Pengguna extends Controller
                     header("location:/pengguna");
                 }
             } else {
-                $cekUsername = $this->model('M_user')->getDataPenggunaByUsername($username);
+                $cekUsername = $this->model('M_user')->getDataPenggunaByUsername(username: $username);
 
                 if ($cekUsername) {
                     $alert = [
@@ -95,7 +95,7 @@ class Pengguna extends Controller
                         $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
                         $password = password_hash($password, PASSWORD_DEFAULT);
 
-                        $this->model('M_user')->updatePengguna($id, $namaPengguna, $username, $password, $telp);
+                        $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: $password, telp: $telp);
 
                         $alert = [
                             'title' => 'Berhasil',
@@ -108,7 +108,7 @@ class Pengguna extends Controller
 
                         header("location:/pengguna");
                     } else {
-                        $this->model('M_user')->updatePengguna($id, $namaPengguna, $username, null,  $telp);
+                        $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
                         $alert = [
                             'title' => 'Berhasil',
@@ -130,7 +130,7 @@ class Pengguna extends Controller
     {
         $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
 
-        $this->model('M_user')->deletePengguna($id);
+        $this->model('M_user')->deletePengguna(id: $id);
 
         $alert = [
             'title' => 'Berhasil',

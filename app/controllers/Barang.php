@@ -2,7 +2,6 @@
 
 class Barang extends Controller
 {
-
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
@@ -45,7 +44,7 @@ class Barang extends Controller
             $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'], ENT_QUOTES)));
             $namaGambar = time() . '-' . $this->textToSlug($namaBarang) . '.' . $ext;
 
-            $this->model('M_barang')->addBarang($namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+            $this->model('M_barang')->addBarang(namaGambar: $namaGambar, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
 
             $proses = move_uploaded_file($tmp, $upload . $namaGambar);
 
@@ -74,7 +73,7 @@ class Barang extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $data['title'] = 'Edit Data Barang';
         $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
@@ -88,7 +87,7 @@ class Barang extends Controller
         $this->view('layouts/backend/footer');
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         if (isset($_POST['submit'])) {
             $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'], ENT_QUOTES)));
@@ -101,13 +100,13 @@ class Barang extends Controller
                 $upload = 'assets/images/barang/';
                 $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
-                $namaGambar = time() . '-' . $this->textToSlug($namaBarang) . '.' . $ext;
+                $namaGambar = time() . '-' . $this->textToSlug(text: $namaBarang) . '.' . $ext;
 
-                $ambilGambar = $this->model('M_barang')->getDataBarangById($id);
+                $ambilGambar = $this->model('M_barang')->getDataBarangById(id: $id);
 
                 unlink('assets/images/barang/' . $ambilGambar['gambar']);
 
-                $this->model('M_barang')->updateBarang($id, $namaGambar, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+                $this->model('M_barang')->updateBarang(id: $id, namaGambar: $namaGambar, namaBarang: $namaBarang, tgl: $tgl, hargAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
 
                 $proses = move_uploaded_file($tmp, $upload . $namaGambar);
 
@@ -134,7 +133,7 @@ class Barang extends Controller
                     echo '<script>history.back()</script>';
                 }
             } else {
-                $this->model('M_barang')->updateBarang($id, null, $namaBarang, $tgl, $hargaAwal, $deskripsiBarang);
+                $this->model('M_barang')->updateBarang(id: $id, namaGambar: null, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
 
                 $alert = [
                     'title' => 'Berhasil',
@@ -154,7 +153,7 @@ class Barang extends Controller
     {
         $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
 
-        $this->model('M_barang')->deleteBarang($id);
+        $this->model('M_barang')->deleteBarang(id: $id);
 
         $alert = [
             'title' => 'Berhasil',
@@ -168,7 +167,7 @@ class Barang extends Controller
         header("location:/barang");
     }
 
-    function textToSlug($text = '')
+    function textToSlug(?string $text)
     {
         $text = trim($text);
         if (empty($text)) return '';

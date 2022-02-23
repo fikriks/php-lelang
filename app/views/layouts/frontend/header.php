@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Sistem Lelang Online | UKK RPL 2022.</title>
-    <meta name="description" content="" />
+    <title><?= $data['title'] . ' - ' . APP_NAME ?></title>
+    <meta name="description" content="Aplikasi Sistem Lelang Online untuk memenuhi program Uji Kompetensi Keahlian (UKK) Rekayasa Perangkat Lunak (RPL)" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/assets/images/favicon-32x32.png">

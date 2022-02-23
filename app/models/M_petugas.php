@@ -1,6 +1,7 @@
 <?php
 
-class M_petugas {
+class M_petugas
+{
     private $table = "tb_petugas";
     private $db;
 
@@ -12,19 +13,19 @@ class M_petugas {
     public function getDataPetugas()
     {
         $this->db->query("SELECT * FROM $this->table INNER JOIN tb_level ON $this->table.id_level = tb_level.id_level");
-        
+
         return $this->db->resultSet();
     }
 
-    public function cekPetugasByUsername($username)
+    public function cekPetugasByUsername(string $username)
     {
         $this->db->query("SELECT * FROM $this->table WHERE username=:username");
-        $this->db->bind("username",$username);
-        
+        $this->db->bind("username", $username);
+
         return $this->db->single();
     }
 
-    public function addPetugas($namaPetugas, $username, $password, $idLevel)
+    public function addPetugas(string $namaPetugas, string $username, string $password, int $idLevel)
     {
         $this->db->query("INSERT INTO $this->table(nama_petugas, username, password, id_level) VALUE (:nama_petugas, :username, :password, :id_level)");
         $this->db->bind('nama_petugas', $namaPetugas);
@@ -35,7 +36,7 @@ class M_petugas {
         return $this->db->execute();
     }
 
-    public function getDataPetugasById($id)
+    public function getDataPetugasById(int $id)
     {
         $this->db->query("SELECT * FROM $this->table WHERE id_petugas=:id");
         $this->db->bind('id', $id);
@@ -43,9 +44,9 @@ class M_petugas {
         return $this->db->single();
     }
 
-    public function updatePetugas($id, $namaPetugas, $username, $password, $idLevel)
+    public function updatePetugas(int $id, string $namaPetugas, string $username, ?string $password, int $idLevel)
     {
-        if(empty($password)){
+        if (is_null($password)) {
             $this->db->query("UPDATE $this->table SET nama_petugas=:nama_petugas, username=:username, id_level=:id_level WHERE id_petugas=:id");
             $this->db->bind('id', $id);
             $this->db->bind('nama_petugas', $namaPetugas);
@@ -59,11 +60,11 @@ class M_petugas {
             $this->db->bind('password', $password);
             $this->db->bind('id_level', $idLevel);
         }
-       
+
         return $this->db->execute();
     }
 
-    public function deletePetugas($id)
+    public function deletePetugas(int $id)
     {
         $this->db->query("DELETE FROM $this->table WHERE id_petugas=:id");
         $this->db->bind('id', $id);

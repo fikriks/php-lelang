@@ -53,10 +53,10 @@ class Petugas extends Controller
             } else {
                 $password = password_hash($password, PASSWORD_DEFAULT);
 
-                $resultCek = $this->model('M_petugas')->cekPetugas($username);
+                $resultCek = $this->model('M_petugas')->cekPetugas(username: $username);
 
                 if (!$resultCek) {
-                    $this->model('M_petugas')->addPetugas($namaPetugas, $username, $password, $idLevel);
+                    $this->model('M_petugas')->addPetugas(namaPetugas: $namaPetugas, username: $username, password: $password, idLevel: $idLevel);
 
                     $alert = [
                         'title' => 'Berhasil',
@@ -82,10 +82,10 @@ class Petugas extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $data['title'] = 'Edit Data Petugas';
-        $data['dataPetugas'] = $this->model('M_petugas')->getDataPetugasById($id);
+        $data['dataPetugas'] = $this->model('M_petugas')->getDataPetugasById(id: $id);
 
         if (!$data['dataPetugas']) {
             header("location:/petugas");
@@ -96,7 +96,7 @@ class Petugas extends Controller
         $this->view('layouts/backend/footer');
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         if (isset($_POST['submit'])) {
             $namaPetugas = stripslashes(strip_tags(htmlspecialchars($_POST['nama_petugas'], ENT_QUOTES)));
@@ -110,7 +110,7 @@ class Petugas extends Controller
                     $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
                     $password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, $password, $idLevel);
+                    $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: $password, idLevel: $idLevel);
 
                     $alert = [
                         'title' => 'Berhasil',
@@ -123,7 +123,7 @@ class Petugas extends Controller
 
                     header("location:/petugas");
                 } else {
-                    $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, null,  $idLevel);
+                    $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
                     $alert = [
                         'title' => 'Berhasil',
@@ -142,7 +142,7 @@ class Petugas extends Controller
                         $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
                         $password = password_hash($password, PASSWORD_DEFAULT);
 
-                        $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, $password, $idLevel);
+                        $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: $password, idLevel: $idLevel);
 
                         $alert = [
                             'title' => 'Berhasil',
@@ -155,7 +155,7 @@ class Petugas extends Controller
 
                         header("location:/petugas");
                     } else {
-                        $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, null,  $idLevel);
+                        $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
                         $alert = [
                             'title' => 'Berhasil',
@@ -170,7 +170,7 @@ class Petugas extends Controller
                     }
                 } else {
 
-                    $cekUsername = $this->model('M_petugas')->cekPetugasByUsername($username);
+                    $cekUsername = $this->model('M_petugas')->cekPetugasByUsername(username: $username);
 
                     if ($cekUsername) {
                         $alert = [
@@ -187,7 +187,7 @@ class Petugas extends Controller
                             $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
                             $password = password_hash($password, PASSWORD_DEFAULT);
 
-                            $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, $password, $idLevel);
+                            $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: $password, idLevel: $idLevel);
 
                             $alert = [
                                 'title' => 'Berhasil',
@@ -200,7 +200,7 @@ class Petugas extends Controller
 
                             header("location:/petugas");
                         } else {
-                            $this->model('M_petugas')->updatePetugas($id, $namaPetugas, $username, null,  $idLevel);
+                            $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
                             $alert = [
                                 'title' => 'Berhasil',
@@ -223,7 +223,7 @@ class Petugas extends Controller
     {
         $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
 
-        $this->model('M_petugas')->deletePetugas($id);
+        $this->model('M_petugas')->deletePetugas(id: $id);
 
         $alert = [
             'title' => 'Berhasil',
