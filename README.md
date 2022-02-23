@@ -40,6 +40,9 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 
     Tanggal Mulai Pengembangan : Sabtu, 12 Februari 2022.
 
+    v1.0 : Rabu, 23 Februari 2022
+    v1.1 : Rabu, 23 Februari 2022
+
 ## 🤝 Kontribusi
 
 _**[Pull Request](https://github.com/fikriks/php-lelang/pulls)**_ dan _**[Issue](https://github.com/fikriks/php-lelang/issues)**_ di persilahkan.
