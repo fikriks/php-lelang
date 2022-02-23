@@ -1,6 +1,5 @@
 # Sistem Lelang Online :handbag:
 
-> Aplikasi ini masih dalam tahap pengembangan.
 > Projek ini merupakan _project open source_, Anda dapat download/fork/clone pada projek ini.
 > Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman PHP Native versi 8.x dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5.
 
