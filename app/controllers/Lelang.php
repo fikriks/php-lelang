@@ -46,12 +46,12 @@ class Lelang extends Controller
                 'title' => 'Berhasil',
                 'text' => 'Berhasil menambah data lelang',
                 'icon' => 'success',
-                'href' => '/lelang'
+                'href' => '../lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:/lelang");
+            header("location:../lelang");
         }
     }
 
@@ -62,7 +62,7 @@ class Lelang extends Controller
         $data['dataTable'] = true;
 
         if (!$data['dataHistoryLelang']) {
-            header("location:/lelang");
+            header("location:../lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -77,7 +77,7 @@ class Lelang extends Controller
         $data['dataBarang'] = $this->model('M_barang')->getDataBarang();
 
         if (!$data['dataLelang']) {
-            header("location:/lelang");
+            header("location:../lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -104,12 +104,12 @@ class Lelang extends Controller
                 'title' => 'Berhasil',
                 'text' => 'Berhasil memperbarui data lelang',
                 'icon' => 'success',
-                'href' => '/lelang'
+                'href' => '../lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:/lelang");
+            header("location:../lelang");
         }
     }
 
@@ -123,11 +123,11 @@ class Lelang extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data lelang',
             'icon' => 'success',
-            'href' => '/lelang'
+            'href' => '../lelang'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:/lelang");
+        header("location:../lelang");
     }
 }

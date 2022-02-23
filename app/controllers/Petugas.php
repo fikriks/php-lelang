@@ -66,7 +66,7 @@ class Petugas extends Controller
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/petugas");
+                    header("location:../petugas");
                 } else {
                     $alert = [
                         'title' => 'Gagal',
@@ -88,7 +88,7 @@ class Petugas extends Controller
         $data['dataPetugas'] = $this->model('M_petugas')->getDataPetugasById(id: $id);
 
         if (!$data['dataPetugas']) {
-            header("location:/petugas");
+            header("location:../petugas");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -116,12 +116,12 @@ class Petugas extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data petugas',
                         'icon' => 'success',
-                        'href' => '/petugas'
+                        'href' => '../petugas'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/petugas");
+                    header("location:../petugas");
                 } else {
                     $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
@@ -129,12 +129,12 @@ class Petugas extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data petugas',
                         'icon' => 'success',
-                        'href' => '/petugas'
+                        'href' => '../petugas'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/petugas");
+                    header("location:../petugas");
                 }
             } else {
                 if ($username == $resultCek['username']) {
@@ -148,12 +148,12 @@ class Petugas extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data petugas',
                             'icon' => 'success',
-                            'href' => '/petugas'
+                            'href' => '../petugas'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:/petugas");
+                        header("location:../petugas");
                     } else {
                         $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
@@ -161,12 +161,12 @@ class Petugas extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data petugas',
                             'icon' => 'success',
-                            'href' => '/petugas'
+                            'href' => '../petugas'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:/petugas");
+                        header("location:../petugas");
                     }
                 } else {
 
@@ -193,12 +193,12 @@ class Petugas extends Controller
                                 'title' => 'Berhasil',
                                 'text' => 'Berhasil memperbarui data petugas',
                                 'icon' => 'success',
-                                'href' => '/petugas'
+                                'href' => '../petugas'
                             ];
 
                             $_SESSION['alert'] = $alert;
 
-                            header("location:/petugas");
+                            header("location:../petugas");
                         } else {
                             $this->model('M_petugas')->updatePetugas(id: $id, namaPetugas: $namaPetugas, username: $username, password: null, idLevel: $idLevel);
 
@@ -206,12 +206,12 @@ class Petugas extends Controller
                                 'title' => 'Berhasil',
                                 'text' => 'Berhasil memperbarui data petugas',
                                 'icon' => 'success',
-                                'href' => '/petugas'
+                                'href' => '../petugas'
                             ];
 
                             $_SESSION['alert'] = $alert;
 
-                            header("location:/petugas");
+                            header("location:../petugas");
                         }
                     }
                 }
@@ -229,11 +229,11 @@ class Petugas extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data petugas',
             'icon' => 'success',
-            'href' => '/petugas'
+            'href' => '../petugas'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:/petugas");
+        header("location:../petugas");
     }
 }

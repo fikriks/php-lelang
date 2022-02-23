@@ -25,7 +25,7 @@ class Login extends Controller
                     if (password_verify($password, $resultPetugas['password'])) {
                         $_SESSION['user'] = $resultPetugas;
 
-                        return header('location:/dashboard');
+                        return header("location:../dashboard");
                     } else {
                         $data['error'] = true;
                         $data['message'] = "Username atau password salah";
@@ -37,7 +37,7 @@ class Login extends Controller
                         if (password_verify($password, $resultUser['password'])) {
                             $_SESSION['user'] = $resultUser;
 
-                            return header('location:/dashboard');
+                            return header("location:../dashboard");
                         } else {
                             $data['error'] = true;
                             $data['message'] = "Username atau password salah";

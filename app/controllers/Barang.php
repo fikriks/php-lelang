@@ -53,12 +53,12 @@ class Barang extends Controller
                     'title' => 'Berhasil',
                     'text' => 'Berhasil menambah data barang',
                     'icon' => 'success',
-                    'href' => '/barang'
+                    'href' => '../barang'
                 ];
 
                 $_SESSION['alert'] = $alert;
 
-                header("location:/barang");
+                header("location:../barang");
             } else {
                 $alert = [
                     'title' => 'Gagal',
@@ -79,7 +79,7 @@ class Barang extends Controller
         $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
 
         if (!$data['dataBarang']) {
-            header("location:/barang");
+            header("location:../barang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -115,12 +115,12 @@ class Barang extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data barang',
                         'icon' => 'success',
-                        'href' => '/barang'
+                        'href' => '../barang'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/barang");
+                    header("location:../barang");
                 } else {
                     $alert = [
                         'title' => 'Gagal',
@@ -139,12 +139,12 @@ class Barang extends Controller
                     'title' => 'Berhasil',
                     'text' => 'Berhasil memperbarui data barang',
                     'icon' => 'success',
-                    'href' => '/barang'
+                    'href' => '../barang'
                 ];
 
                 $_SESSION['alert'] = $alert;
 
-                header("location:/barang");
+                header("location:../barang");
             }
         }
     }
@@ -159,12 +159,12 @@ class Barang extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data barang',
             'icon' => 'success',
-            'href' => '/barang'
+            'href' => '../barang'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:/barang");
+        header("location:../barang");
     }
 
     function textToSlug(?string $text)

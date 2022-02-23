@@ -2,7 +2,7 @@
 
 > Aplikasi ini masih dalam tahap pengembangan.
 > Projek ini merupakan _project open source_, Anda dapat download/fork/clone pada projek ini.
-> Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman PHP Native dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5.
+> Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman PHP Native versi 8.x dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5.
 
 ## 🤔 Latar Belakang dan Tujuan
 
@@ -10,7 +10,7 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 
 ## 💻 Tools & Software yang Digunakan
 
-    XAMPP
+    XAMPP 8.1.2
     Code Editor
 
 ## 🔧 Konfigurasi
@@ -19,8 +19,8 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 - Buka file app/config/config.php
 - Ubah pada bagian
 
-      define('BASE_URL', 'http://localhost');
-      define('DB_NAME', 'lelang');
+      const BASE_URL = 'http://localhost/';
+      const DB_NAME = 'lelang';
 
 - Sesuaikan dengan yang kalian punya
 

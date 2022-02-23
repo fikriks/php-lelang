@@ -34,7 +34,7 @@ class Register extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil mendaftar, silahkan login',
                             'icon' => 'success',
-                            'href' => '/login'
+                            'href' => '../login'
                         ];
 
                         $_SESSION['alert'] = $alert;

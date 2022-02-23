@@ -29,7 +29,7 @@ class Pengguna extends Controller
         $data['dataPengguna'] = $this->model('M_user')->getDataPenggunaById(id: $id);
 
         if (!$data['dataPengguna']) {
-            header("location:/pengguna");
+            header("location:../pengguna");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -57,12 +57,12 @@ class Pengguna extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data pengguna',
                         'icon' => 'success',
-                        'href' => '/pengguna'
+                        'href' => '../pengguna'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/pengguna");
+                    header("location:../pengguna");
                 } else {
                     $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
@@ -70,12 +70,12 @@ class Pengguna extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data pengguna',
                         'icon' => 'success',
-                        'href' => '/pengguna'
+                        'href' => '../pengguna'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:/pengguna");
+                    header("location:../pengguna");
                 }
             } else {
                 $cekUsername = $this->model('M_user')->getDataPenggunaByUsername(username: $username);
@@ -101,12 +101,12 @@ class Pengguna extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data pengguna',
                             'icon' => 'success',
-                            'href' => '/pengguna'
+                            'href' => '../pengguna'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:/pengguna");
+                        header("location:../pengguna");
                     } else {
                         $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
@@ -114,12 +114,12 @@ class Pengguna extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data pengguna',
                             'icon' => 'success',
-                            'href' => '/pengguna'
+                            'href' => '../pengguna'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:/pengguna");
+                        header("location:../pengguna");
                     }
                 }
             }
@@ -136,11 +136,11 @@ class Pengguna extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data pengguna',
             'icon' => 'success',
-            'href' => '/pengguna'
+            'href' => '../pengguna'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:/pengguna");
+        header("location:../pengguna");
     }
 }
