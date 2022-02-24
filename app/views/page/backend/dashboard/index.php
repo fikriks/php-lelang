@@ -46,6 +46,5 @@
                 <a href="<?= BASE_URL ?>/#lelang" class="btn btn-primary">Katalog Lelang</a>
             <?php } ?>
         </div>
-</div>
-</section>
+    </section>
 </div>

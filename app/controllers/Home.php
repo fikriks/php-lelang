@@ -5,7 +5,7 @@ class Home extends Controller
 
     public function index()
     {
-        $data['title'] = 'Dashboard';
+        $data['title'] = 'Home';
         $data['dataBarang'] = $this->model('M_lelang')->getLelangDiBuka();
 
         $this->view('layouts/frontend/header', $data);

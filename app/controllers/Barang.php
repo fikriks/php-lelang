@@ -5,9 +5,9 @@ class Barang extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:'.BASE_URL.'/admin');
+            header('location:' . BASE_URL . '/admin');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:'.BASE_URL.'/dashboard');
+            header('location:' . BASE_URL . '/dashboard');
         }
     }
 
@@ -38,7 +38,7 @@ class Barang extends Controller
             $upload = 'assets/images/barang/';
             $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
-            if(!is_dir($upload)){
+            if (!is_dir($upload)) {
                 mkdir($upload);
             }
 
@@ -46,7 +46,7 @@ class Barang extends Controller
             $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'], ENT_QUOTES)));
             $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'], ENT_QUOTES)));
             $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'], ENT_QUOTES)));
-            $namaGambar = time() . '-' . $this->textToSlug($namaBarang) . '.' . $ext;
+            $namaGambar = time() . '-' . $this->textToSlug(text: $namaBarang) . '.' . $ext;
 
             $this->model('M_barang')->addBarang(namaGambar: $namaGambar, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
 
@@ -57,12 +57,12 @@ class Barang extends Controller
                     'title' => 'Berhasil',
                     'text' => 'Berhasil menambah data barang',
                     'icon' => 'success',
-                    'href' => '../barang'
+                    'href' => BASE_URL . '/barang'
                 ];
 
                 $_SESSION['alert'] = $alert;
 
-                header("location:".BASE_URL."/barang");
+                header("location:" . BASE_URL . "/barang");
             } else {
                 $alert = [
                     'title' => 'Gagal',
@@ -80,10 +80,10 @@ class Barang extends Controller
     public function edit(int $id)
     {
         $data['title'] = 'Edit Data Barang';
-        $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
+        $data['dataBarang'] = $this->model('M_barang')->getDataBarangById(id: $id);
 
         if (!$data['dataBarang']) {
-            header("location:".BASE_URL."/barang");
+            header("location:" . BASE_URL . "/barang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -99,12 +99,25 @@ class Barang extends Controller
             $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'], ENT_QUOTES)));
             $deskripsiBarang = stripslashes(strip_tags(htmlspecialchars($_POST['deskripsi_barang'], ENT_QUOTES)));
 
-            if (isset($_FILES['gambar_barang'])) {
+            if ($_FILES['gambar_barang']['error'] == 4) {
+                $this->model('M_barang')->updateBarang(id: $id, namaGambar: null, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
+
+                $alert = [
+                    'title' => 'Berhasil',
+                    'text' => 'Berhasil memperbarui data barang',
+                    'icon' => 'success',
+                    'href' => BASE_URL . '/barang'
+                ];
+
+                $_SESSION['alert'] = $alert;
+
+                header("location:" . BASE_URL . "/barang");
+            } else {
                 $tmp = $_FILES['gambar_barang']['tmp_name'];
                 $upload = 'assets/images/barang/';
                 $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
-                if(!is_dir($upload)){
+                if (!is_dir($upload)) {
                     mkdir($upload);
                 }
 
@@ -114,7 +127,7 @@ class Barang extends Controller
 
                 unlink('assets/images/barang/' . $ambilGambar['gambar']);
 
-                $this->model('M_barang')->updateBarang(id: $id, namaGambar: $namaGambar, namaBarang: $namaBarang, tgl: $tgl, hargAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
+                $this->model('M_barang')->updateBarang(id: $id, namaGambar: $namaGambar, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
 
                 $proses = move_uploaded_file($tmp, $upload . $namaGambar);
 
@@ -123,12 +136,12 @@ class Barang extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data barang',
                         'icon' => 'success',
-                        'href' => '../barang'
+                        'href' => BASE_URL . '/barang'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:".BASE_URL."/barang");
+                    header("location:" . BASE_URL . "/barang");
                 } else {
                     $alert = [
                         'title' => 'Gagal',
@@ -140,19 +153,6 @@ class Barang extends Controller
 
                     echo '<script>history.back()</script>';
                 }
-            } else {
-                $this->model('M_barang')->updateBarang(id: $id, namaGambar: null, namaBarang: $namaBarang, tgl: $tgl, hargaAwal: $hargaAwal, deskripsiBarang: $deskripsiBarang);
-
-                $alert = [
-                    'title' => 'Berhasil',
-                    'text' => 'Berhasil memperbarui data barang',
-                    'icon' => 'success',
-                    'href' => '../barang'
-                ];
-
-                $_SESSION['alert'] = $alert;
-
-                header("location:".BASE_URL."/barang");
             }
         }
     }
@@ -160,6 +160,9 @@ class Barang extends Controller
     public function delete()
     {
         $id = stripslashes(strip_tags(htmlspecialchars($_POST['id'], ENT_QUOTES)));
+        $dataBarang = $this->model('M_barang')->getDataBarangById(id: $id);
+
+        unlink('assets/images/barang/' . $dataBarang['gambar']);
 
         $this->model('M_barang')->deleteBarang(id: $id);
 
@@ -167,12 +170,12 @@ class Barang extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data barang',
             'icon' => 'success',
-            'href' => '../barang'
+            'href' => BASE_URL . '/barang'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:".BASE_URL."/barang");
+        header("location:" . BASE_URL . "/barang");
     }
 
     function textToSlug(?string $text)

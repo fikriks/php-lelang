@@ -6,7 +6,7 @@ class Login extends Controller
     public function __construct()
     {
         if (!empty($_SESSION['user'])) {
-            header('location:'.BASE_URL.'/dashboard');
+            header('location:' . BASE_URL . '/dashboard');
         }
     }
 
@@ -19,20 +19,33 @@ class Login extends Controller
             $password = stripslashes(strip_tags(htmlspecialchars($_POST['password'], ENT_QUOTES)));
 
             if (!empty($username) && !empty($password)) {
-                $resultUser = $this->model('M_user')->loginUser(username: $username);
+                $resultPetugas = $this->model('M_user')->loginPetugas(username: $username);
 
-                if ($resultUser) {
-                    if (password_verify($password, $resultUser['password'])) {
-                        $_SESSION['user'] = $resultUser;
+                if ($resultPetugas) {
+                    if (password_verify($password, $resultPetugas['password'])) {
+                        $_SESSION['user'] = $resultPetugas;
 
-                        return header("location:".BASE_URL."/dashboard");
+                        header("location:" . BASE_URL . "/dashboard");
                     } else {
                         $data['error'] = true;
                         $data['message'] = "Username atau password salah";
                     }
                 } else {
-                    $data['error'] = true;
-                    $data['message'] = "Username atau password salah";
+                    $resultUser = $this->model('M_user')->loginUser(username: $username);
+
+                    if ($resultUser) {
+                        if (password_verify($password, $resultUser['password'])) {
+                            $_SESSION['user'] = $resultUser;
+
+                            header("location:" . BASE_URL . "/dashboard");
+                        } else {
+                            $data['error'] = true;
+                            $data['message'] = "Username atau password salah";
+                        }
+                    } else {
+                        $data['error'] = true;
+                        $data['message'] = "Username atau password salah";
+                    }
                 }
             } else {
                 $data['error'] = true;
@@ -41,7 +54,7 @@ class Login extends Controller
         }
 
         $this->view('layouts/auth/header', $data);
-        $this->view('page/backend/login/user', $data);
+        $this->view('page/backend/login/index', $data);
         $this->view('layouts/auth/footer', $data);
     }
 }

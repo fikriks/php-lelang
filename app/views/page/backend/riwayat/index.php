@@ -29,11 +29,11 @@
                             <?php
                             $no = 1;
                             foreach ($data['history'] as $riwayat) : ?>
-                                <tr id="row-<?= $no ?>" data-id="<?= $riwayat['id_riwayat'] ?>">
+                                <tr>
                                     <td><?= date('Y F d', strtotime($riwayat['tgl_lelang'])) ?></td>
                                     <td><?= $riwayat['nama_barang'] ?></td>
                                     <td><?= $riwayat['harga_awal'] ?></td>
-                                    <td><?= $riwayat['harga_akhir'] ?></td>
+                                    <td><?= $riwayat['penawaran_harga'] ?></td>
                                 </tr>
                             <?php
                                 $no++;

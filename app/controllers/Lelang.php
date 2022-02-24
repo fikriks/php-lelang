@@ -6,9 +6,9 @@ class Lelang extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:'.BASE_URL.'/login');
+            header('location:' . BASE_URL . '/login');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:'.BASE_URL.'/dashboard');
+            header('location:' . BASE_URL . '/dashboard');
         }
     }
 
@@ -46,24 +46,24 @@ class Lelang extends Controller
                 'title' => 'Berhasil',
                 'text' => 'Berhasil menambah data lelang',
                 'icon' => 'success',
-                'href' => '../lelang'
+                'href' => BASE_URL . '/lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:".BASE_URL."/lelang");
+            header("location:" . BASE_URL . "/lelang");
         }
     }
 
-    public function show(int $id)
+    public function show(int $id = null)
     {
+        if (is_null($id)) {
+            header("location:" . BASE_URL . "/lelang");
+        }
+
         $data['title'] = 'Detail Data Lelang';
         $data['dataHistoryLelang'] = $this->model('M_lelang')->getDataHistoryLelang(id: $id);
         $data['dataTable'] = true;
-
-        if (!$data['dataHistoryLelang']) {
-            header("location:".BASE_URL."/lelang");
-        }
 
         $this->view('layouts/backend/header', $data);
         $this->view('page/backend/lelang/show', $data);
@@ -77,7 +77,7 @@ class Lelang extends Controller
         $data['dataBarang'] = $this->model('M_barang')->getDataBarang();
 
         if (!$data['dataLelang']) {
-            header("location:".BASE_URL."/lelang");
+            header("location:" . BASE_URL . "/lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -97,19 +97,21 @@ class Lelang extends Controller
             if ($status == 'ditutup') {
                 $data = $this->model('M_history_lelang')->getHargaTertinggi(id: $id);
 
-                $this->model('M_penawaran')->addPenawaran(id: $id, idUser: $data['id_user'], penawaranHarga: $data['penawaran_harga']);
+                if ($data) {
+                    $this->model('M_penawaran')->addPenawaran(idLelang: $id, idUser: $data['id_user'], hargaAkhir: $data['penawaran_harga']);
+                }
             }
 
             $alert = [
                 'title' => 'Berhasil',
                 'text' => 'Berhasil memperbarui data lelang',
                 'icon' => 'success',
-                'href' => '../lelang'
+                'href' => BASE_URL . '/lelang'
             ];
 
             $_SESSION['alert'] = $alert;
 
-            header("location:".BASE_URL."/lelang");
+            header("location:" . BASE_URL . "/lelang");
         }
     }
 
@@ -123,11 +125,11 @@ class Lelang extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data lelang',
             'icon' => 'success',
-            'href' => '../lelang'
+            'href' => BASE_URL . '/lelang'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:".BASE_URL."/lelang");
+        header("location:" . BASE_URL . "/lelang");
     }
 }

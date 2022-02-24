@@ -1,7 +1,7 @@
 # Sistem Lelang Online :handbag:
 
 > Projek ini merupakan _project open source_, Anda dapat download/fork/clone pada projek ini.
-> Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman PHP Native versi 8.x dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5.
+> Aplikasi Sistem Lelang berbasis website, dibuat dengan Bahasa Pemrograman **PHP Native versi 8.x dengan menggunakan pattern MVC (Model View Controller), MySQL dan Bootstrap 5**.
 
 ## 🤔 Latar Belakang dan Tujuan
 
@@ -18,14 +18,12 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 - Buka file app/config/config.php
 - Ubah pada bagian
 
-      const BASE_URL = 'http://localhost/';
+      const BASE_URL = 'http://localhost/php-lelang';
       const DB_NAME = 'lelang';
 
 - Sesuaikan dengan yang kalian punya
 
 ## :man: Akun
-
-**URL Login Petugas: /admin**
 
     - Hak Akses Administrator
     	Username: admin
@@ -33,9 +31,6 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
     - Hak Akses Petugas
     	Username: petugas
     	Password: batagorenak
-
-**URL Login User: /login**
-
     - Hak Akses Masyarakat/User
     	Username: fikri
     	Password: batagorenak
@@ -47,6 +42,7 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
     v1.0 : Rabu, 23 Februari 2022
     v1.1 : Rabu, 23 Februari 2022
     v1.2 : Kamis, 24 Februari 2022
+    v1.3 : Kamis, 24 Februari 2022
 
 ## 🤝 Kontribusi
 

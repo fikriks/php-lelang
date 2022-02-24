@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $data['title'] . ' - ' . APP_NAME ?></title>
     <meta name="description" content="Aplikasi Sistem Lelang Online untuk memenuhi program Uji Kompetensi Keahlian (UKK) Rekayasa Perangkat Lunak (RPL)" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/assets/images/favicon-32x32.png">

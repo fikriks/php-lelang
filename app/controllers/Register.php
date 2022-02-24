@@ -6,7 +6,7 @@ class Register extends Controller
     public function __construct()
     {
         if (!empty($_SESSION['user'])) {
-            header('location:'.BASE_URL.'/dashboard');
+            header('location:' . BASE_URL . '/dashboard');
         }
     }
 
@@ -34,7 +34,7 @@ class Register extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil mendaftar, silahkan login',
                             'icon' => 'success',
-                            'href' => BASE_URL.'/login'
+                            'href' => BASE_URL . '/login'
                         ];
 
                         $_SESSION['alert'] = $alert;

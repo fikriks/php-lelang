@@ -21,12 +21,14 @@
                             <span>Data Barang</span>
                         </a>
                     </li>
-                    <li class="sidebar-item <?= $data['title'] == 'Data Petugas' ? 'active' : '' ?>">
-                        <a href="<?= BASE_URL ?>/petugas" class='sidebar-link'>
-                            <i data-feather="user" width="20"></i>
-                            <span>Data Petugas</span>
-                        </a>
-                    </li>
+                    <?php if ($_SESSION['user']['level'] == 'administrator') : ?>
+                        <li class="sidebar-item <?= $data['title'] == 'Data Petugas' ? 'active' : '' ?>">
+                            <a href="<?= BASE_URL ?>/petugas" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Data Petugas</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <?php if ($_SESSION['user']['level'] == 'petugas') : ?>
                         <li class="sidebar-item <?= $data['title'] == 'Data Pengguna' ? 'active' : '' ?>">
                             <a href="<?= BASE_URL ?>/pengguna" class='sidebar-link'>

@@ -6,7 +6,7 @@ class Dashboard extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:'.BASE_URL.'/');
+            header('location:' . BASE_URL . '/');
         }
     }
 

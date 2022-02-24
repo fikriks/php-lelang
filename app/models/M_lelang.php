@@ -17,10 +17,10 @@ class M_lelang
         return $this->db->resultSet();
     }
 
-    public function addLelang(string $namaBarang, String $tgl, int $idPetugas, string $status)
+    public function addLelang(int $idBarang, string $tgl, int $idPetugas, string $status)
     {
         $this->db->query("INSERT INTO $this->table(id_barang, tgl_lelang, id_petugas, status) VALUE (:id_barang, :tgl_lelang, :id_petugas, :status)");
-        $this->db->bind('id_barang', $namaBarang);
+        $this->db->bind('id_barang', $idBarang);
         $this->db->bind('tgl_lelang', $tgl);
         $this->db->bind('id_petugas', $idPetugas);
         $this->db->bind('status', $status);
@@ -51,7 +51,7 @@ class M_lelang
         return $this->db->resultSet();
     }
 
-    public function updateLelang(int $id, int $idBarang, String $tgl, string $status)
+    public function updateLelang(int $id, int $idBarang, string $tgl, string $status)
     {
         $this->db->query("UPDATE $this->table SET id_barang=:id_barang, tgl_lelang=:tgl, status=:status WHERE id_lelang=:id");
         $this->db->bind('id', $id);

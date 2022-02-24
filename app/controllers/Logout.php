@@ -8,6 +8,6 @@ class Logout extends Controller
         session_destroy();
         session_unset();
 
-        return header("location:".BASE_URL."/login");
+        return header("location:" . BASE_URL . "/");
     }
 }
