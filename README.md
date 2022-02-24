@@ -25,12 +25,16 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 
 ## :man: Akun
 
+**URL Login Petugas: /admin**
+
     - Hak Akses Administrator
     	Username: admin
     	Password: batagorenak
     - Hak Akses Petugas
     	Username: petugas
     	Password: batagorenak
+
+**URL Login User: /login**
     - Hak Akses Masyarakat/User
     	Username: fikri
     	Password: batagorenak
@@ -41,6 +45,7 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
 
     v1.0 : Rabu, 23 Februari 2022
     v1.1 : Rabu, 23 Februari 2022
+    v1.2 : Kamis, 24 Februari 2022
 
 ## 🤝 Kontribusi
 

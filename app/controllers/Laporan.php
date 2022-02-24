@@ -6,9 +6,9 @@ class Laporan extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:../login');
+            header('location:'.BASE_URL.'/login');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:../dashboard');
+            header('location:'.BASE_URL.'/dashboard');
         }
     }
 

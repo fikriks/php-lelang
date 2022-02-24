@@ -6,9 +6,9 @@ class Pengguna extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:../login');
+            header('location:'.BASE_URL.'/login');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:../dashboard');
+            header('location:'.BASE_URL.'/dashboard');
         }
     }
 
@@ -29,7 +29,7 @@ class Pengguna extends Controller
         $data['dataPengguna'] = $this->model('M_user')->getDataPenggunaById(id: $id);
 
         if (!$data['dataPengguna']) {
-            header("location:../pengguna");
+            header("location:".BASE_URL."/pengguna");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -62,7 +62,7 @@ class Pengguna extends Controller
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:../pengguna");
+                    header("location:".BASE_URL."/pengguna");
                 } else {
                     $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
@@ -70,12 +70,12 @@ class Pengguna extends Controller
                         'title' => 'Berhasil',
                         'text' => 'Berhasil memperbarui data pengguna',
                         'icon' => 'success',
-                        'href' => '../pengguna'
+                        'href' => BASE_URL.'/pengguna'
                     ];
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:../pengguna");
+                    header("location:".BASE_URL."/pengguna");
                 }
             } else {
                 $cekUsername = $this->model('M_user')->getDataPenggunaByUsername(username: $username);
@@ -101,12 +101,12 @@ class Pengguna extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data pengguna',
                             'icon' => 'success',
-                            'href' => '../pengguna'
+                            'href' => BASE_URL.'/pengguna'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:../pengguna");
+                        header("location:".BASE_URL."/pengguna");
                     } else {
                         $this->model('M_user')->updatePengguna(id: $id, namaPengguna: $namaPengguna, username: $username, password: null, telp: $telp);
 
@@ -114,12 +114,12 @@ class Pengguna extends Controller
                             'title' => 'Berhasil',
                             'text' => 'Berhasil memperbarui data pengguna',
                             'icon' => 'success',
-                            'href' => '../pengguna'
+                            'href' => BASE_URL.'/pengguna'
                         ];
 
                         $_SESSION['alert'] = $alert;
 
-                        header("location:../pengguna");
+                        header("location:".BASE_URL."/pengguna");
                     }
                 }
             }
@@ -136,11 +136,11 @@ class Pengguna extends Controller
             'title' => 'Berhasil',
             'text' => 'Berhasil menghapus data pengguna',
             'icon' => 'success',
-            'href' => '../pengguna'
+            'href' => BASE_URL.'/pengguna'
         ];
 
         $_SESSION['alert'] = $alert;
 
-        header("location:../pengguna");
+        header("location:".BASE_URL."/pengguna");
     }
 }

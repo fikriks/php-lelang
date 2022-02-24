@@ -5,9 +5,9 @@ class Barang extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:../login');
+            header('location:'.BASE_URL.'/admin');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:../dashboard');
+            header('location:'.BASE_URL.'/dashboard');
         }
     }
 
@@ -38,6 +38,10 @@ class Barang extends Controller
             $upload = 'assets/images/barang/';
             $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
 
+            if(!is_dir($upload)){
+                mkdir($upload);
+            }
+
             $tgl = stripslashes(strip_tags(htmlspecialchars($_POST['tgl'], ENT_QUOTES)));
             $namaBarang = stripslashes(strip_tags(htmlspecialchars($_POST['nama_barang'], ENT_QUOTES)));
             $hargaAwal = stripslashes(strip_tags(htmlspecialchars($_POST['harga_awal'], ENT_QUOTES)));
@@ -58,7 +62,7 @@ class Barang extends Controller
 
                 $_SESSION['alert'] = $alert;
 
-                header("location:../barang");
+                header("location:".BASE_URL."/barang");
             } else {
                 $alert = [
                     'title' => 'Gagal',
@@ -79,7 +83,7 @@ class Barang extends Controller
         $data['dataBarang'] = $this->model('M_barang')->getDataBarangById($id);
 
         if (!$data['dataBarang']) {
-            header("location:../barang");
+            header("location:".BASE_URL."/barang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -99,6 +103,10 @@ class Barang extends Controller
                 $tmp = $_FILES['gambar_barang']['tmp_name'];
                 $upload = 'assets/images/barang/';
                 $ext = pathinfo($_FILES['gambar_barang']['name'], PATHINFO_EXTENSION);
+
+                if(!is_dir($upload)){
+                    mkdir($upload);
+                }
 
                 $namaGambar = time() . '-' . $this->textToSlug(text: $namaBarang) . '.' . $ext;
 
@@ -120,7 +128,7 @@ class Barang extends Controller
 
                     $_SESSION['alert'] = $alert;
 
-                    header("location:../barang");
+                    header("location:".BASE_URL."/barang");
                 } else {
                     $alert = [
                         'title' => 'Gagal',
@@ -144,7 +152,7 @@ class Barang extends Controller
 
                 $_SESSION['alert'] = $alert;
 
-                header("location:../barang");
+                header("location:".BASE_URL."/barang");
             }
         }
     }
@@ -164,7 +172,7 @@ class Barang extends Controller
 
         $_SESSION['alert'] = $alert;
 
-        header("location:../barang");
+        header("location:".BASE_URL."/barang");
     }
 
     function textToSlug(?string $text)

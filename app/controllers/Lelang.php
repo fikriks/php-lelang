@@ -6,9 +6,9 @@ class Lelang extends Controller
     public function __construct()
     {
         if (empty($_SESSION['user'])) {
-            header('location:../login');
+            header('location:'.BASE_URL.'/login');
         } else if (empty($_SESSION['user']['level'])) {
-            header('location:../dashboard');
+            header('location:'.BASE_URL.'/dashboard');
         }
     }
 
@@ -51,7 +51,7 @@ class Lelang extends Controller
 
             $_SESSION['alert'] = $alert;
 
-            header("location:../lelang");
+            header("location:".BASE_URL."/lelang");
         }
     }
 
@@ -62,7 +62,7 @@ class Lelang extends Controller
         $data['dataTable'] = true;
 
         if (!$data['dataHistoryLelang']) {
-            header("location:../lelang");
+            header("location:".BASE_URL."/lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -77,7 +77,7 @@ class Lelang extends Controller
         $data['dataBarang'] = $this->model('M_barang')->getDataBarang();
 
         if (!$data['dataLelang']) {
-            header("location:../lelang");
+            header("location:".BASE_URL."/lelang");
         }
 
         $this->view('layouts/backend/header', $data);
@@ -109,7 +109,7 @@ class Lelang extends Controller
 
             $_SESSION['alert'] = $alert;
 
-            header("location:../lelang");
+            header("location:".BASE_URL."/lelang");
         }
     }
 
@@ -128,6 +128,6 @@ class Lelang extends Controller
 
         $_SESSION['alert'] = $alert;
 
-        header("location:../lelang");
+        header("location:".BASE_URL."/lelang");
     }
 }

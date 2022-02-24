@@ -6,7 +6,7 @@ class Detail extends Controller
     public function index(int $id = null)
     {
         if (is_null($id)) {
-            header("location:../");
+            header("location:".BASE_URL."/");
         }
 
         $data['title'] = 'Dashboard';
@@ -15,7 +15,7 @@ class Detail extends Controller
         $data['hargaTertinggi'] = $this->model('M_history_lelang')->getHargaTertinggi(id: $id);
 
         if (!$data['dataLelang']) {
-            header("location:../");
+            header("location:".BASE_URL."/");
         }
 
         $this->view('layouts/frontend/header', $data);
