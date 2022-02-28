@@ -43,6 +43,7 @@ Ditujukan untuk memenuhi program Uji Kompetensi Keahlian Rekayasa Perangkat Luna
     v1.1 : Rabu, 23 Februari 2022
     v1.2 : Kamis, 24 Februari 2022
     v1.3 : Kamis, 24 Februari 2022
+    v1.4 : Senin, 28 Februari 2022
 
 ## 🤝 Kontribusi
 

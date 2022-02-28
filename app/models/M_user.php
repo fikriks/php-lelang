@@ -88,4 +88,12 @@ class M_user
 
         return $this->db->execute();
     }
+
+    public function deletePengguna(int $id)
+    {
+        $this->db->query("DELETE FROM $this->tableUser WHERE id_user=:id");
+        $this->db->bind('id', $id);
+
+        return $this->db->execute();
+    }
 }
